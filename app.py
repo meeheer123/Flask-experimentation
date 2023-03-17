@@ -12,19 +12,37 @@ app = Flask(__name__)
 
 
 @app.route("/", methods=['GET', 'POST'])
-def home():
+def signIn():
   if request.method == 'POST':
-    Name = request.form.get('name')
-    Runs = request.form.get('id')
-    Name = str(Name)
-    Runs = int(Runs)
+    signInEmail = request.form.get('signInEmail')
+    signInPassword = request.form.get('signInPassword')
+    signInEmail = str(signInEmail)
+    signInPassword = str(signInPassword)
     with engine.connect() as conn:
-      conn.execute(text(
-        f"INSERT INTO Data (Name,Runs) VALUES ('{Name}',{Runs})"))
+      conn.execute(
+        text(
+          f"INSERT INTO Data (email,password) VALUES ('{signInEmail}','{signInPassword}')"
+        ))
       conn.commit()
-  return render_template('registration.html')
+  return render_template('registration_page.html')
+
+
+def signUp():
+  if request.method == 'POST':
+    signUpName = request.form.get('signUpName')
+    signUpEmail = request.form.get('signUpEmail')
+    signUpPassword = request.form.get('signUpPassword')
+    signUpName = str(signUpName)
+    signUpEmail = str(signUpEmail)
+    signUpPassword = str(signUpPassword)
+    with engine.connect() as conn:
+      conn.execute(
+        text(
+          f"INSERT INTO python_flask_website.signUpDetails (name,email,password) VALUES ('{signUpName}','{signUpEmail}','{signUpPassword}')"
+        ))
+      conn.commit()
+  return render_template('registration_page.html')
 
 
 if __name__ == "__main__":
   app.run(host='0.0.0.0', debug="True")
-
