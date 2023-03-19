@@ -261,12 +261,11 @@ footer a {
     </style>
 </head>
 <body>
-  {% if error_message %}
+    {% if error_message %}
     <script>
         alert("{{ error_message }}");
     </script>
     {% endif %}
-    
     <script src="script.js"></script>
     <h2>Sign Up</h2>
   <!-- this is the code for sign up-->
@@ -286,7 +285,6 @@ footer a {
 			<button>Sign Up</button>
 		</form>
 	</div>
-  
   <!-- this is the code for sign in-->
 	<div class="form-container sign-in-container">
 		<form method = "POST" enctype = "multipart/form-data" action="#">
