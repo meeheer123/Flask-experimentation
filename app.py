@@ -24,11 +24,6 @@ def signIn():
           f"INSERT INTO Data (email,password) VALUES ('{signInEmail}','{signInPassword}')"
         ))
       conn.commit()
-  return render_template('registration_page.html')
-
-
-def signUp():
-  if request.method == 'POST':
     signUpName = request.form.get('signUpName')
     signUpEmail = request.form.get('signUpEmail')
     signUpPassword = request.form.get('signUpPassword')
@@ -40,9 +35,7 @@ def signUp():
         text(
           f"INSERT INTO python_flask_website.signUpDetails (name,email,password) VALUES ('{signUpName}','{signUpEmail}','{signUpPassword}')"
         ))
-      conn.commit()
   return render_template('registration_page.html')
-
 
 if __name__ == "__main__":
   app.run(host='0.0.0.0', debug="True")
